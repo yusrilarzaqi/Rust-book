@@ -7,3 +7,5 @@
 ## [Common Concepts](https://github.com/yusrilarzaqi/Rust-book/tree/main/common_concepts)
 
 ## [Rust Ownership](https://github.com/yusrilarzaqi/Rust-book/tree/main/rust_ownership)
+
+## [Struct](https://github.com/yusrilarzaqi/Rust-book/tree/main/structs)
