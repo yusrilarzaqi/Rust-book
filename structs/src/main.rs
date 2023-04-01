@@ -1,3 +1,4 @@
+#[allow(dead_code)]
 struct User {
     active: bool,
     username: String,
@@ -6,18 +7,20 @@ struct User {
 }
 
 fn main() {
-    let mut user1 = User {
+    let user1 = User {
         active: true,
         username: String::from("someusername123"),
         email: String::from("some@example.com"),
         sign_in_count: 1,
     };
 
-    println!("Username : {}", user1.username);
-    println!("Email : {}", user1.email);
+    let user2 = User {
+        email: String::from("another@example.com"),
+        ..user1
+    };
 
-    user1.username = String::from("updatedusername");
-    println!("Username : {}", user1.username);
+    println!("user2 {}", user2.username);
+    println!("user1 {}", user1.username);
 }
 
 fn build_user(email: String, username: String) -> User {
