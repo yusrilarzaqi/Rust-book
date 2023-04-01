@@ -157,4 +157,114 @@ In this example, we can no longer use `user1` as a whole after creating `user2` 
 If we had given `user2` new `String` values for both `email` and `username`, and thus only used the `active` and `sign_in_count` values from `user1`, then `user1` would still be valid after creating `user2`.
 Both `active` and `sign_in_count` are types that implement the `Copy` trait, so the behavior we discussed in the ["Stack-Only Data:Copy"](https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html#stack-only-data-copy) section would apply.
 
+## Using Tuple Structs Without Named Fields to Create Different Types
+
+Rust also supports structs that look similar to tuples, called _tuple structs_.
+Tuple structs have the added meaning the struct name provides but don't have names associated with their fields;rather, they just have the types of the fields.
+Tuple strucs are useful when you want to give the whole tuple a name and make the tuple a different type from other tuples, and when naming each field as in a regular struct would be verbose or redundant.
+
+To define a tuple struct, start with the `struct` keyword and the struct name followed by the types in the tuple.
+For example, here we define and use two tuple structs named `Color` and `Point`:
+
+```rust
+struct Color(i32, i32, i32);
+struct Point(i32, i32, i32);
+
+fn main() {
+    let black = Color(0, 0, 0);
+    let origin = Point(0, 0, 0);
+}
+```
+
+Note that the `black` and `origin` values are different types because they're instances of different tuple structs.
+Each struct you define is its own type, even through the fields within the struct might have the same types.
+For example, a function that takes a parameter of type `Color` cannot take a `Point` as an argument, even through both types are made up of three `i32` values.
+Otherwise, tuple struct instances are similar to tuples in that you can destructure them into their individual pieces, and you can use a `.` followed by the index to access an individual value.
+
+## Unit-Like Structs Without Any Fields
+
+You can also define structs that don't have any fields!
+These are called _unit-like structs_ because they behave similar to `()`, the unit type that we mentioned in ["The Tuple Type"](https://doc.rust-lang.org/book/ch03-02-data-types.html#the-tuple-type) section.
+Unit-like structs can be useful when you need to implement a trait on some type but don't have any data that you want to store in the type itself named `AlwaysEqual`:
+
+```rust
+struct AlwaysEqual;
+
+fn main() {
+    let subject = AlwaysEqual;
+}
+```
+
+To define `AlwaysEqual`, we use the `struct` keyword, the name we want, and then a semicolon.
+No need for curly brackets or parentheses!
+Then we can get an instance of `AlwaysEqual` in the `subject` variable in a similar way: using the name we defined, without any curly brackets or parentheses.
+Imagine that later we'll implement behavior for this type such that every instance of `AlwaysEqual` is always equal to every instance of any other type, perhaps to have a know result for testing purposes.
+We wouldn't need any data to implement that behavior!
+You'll see in Chapter 10 how to define trait and implement them on any type, including unit-like structs.
+
+### Ownership of Struct Data
+
+In the `User` struct definition in Listing 5-1, we used the owned `String` type rather than the `&str` string slice type.
+This is a deliberate choice because we want each instance of this struct to own all of its data and for that data to be valid for as long as the entire struct in valid
+
+It's also possible for structs to store references to data owned by something else, but to do so requires the use of _lifetimes_, a Rust feature that we'll discuss in Chapter 10.
+Lifetimes ensure that the data referenced by a struct is valid for as long as the struct is.
+Let's say you try to store a reference in a struct without specifying lifetimes, like the following;this won't work:
+
+```rust
+struct User {
+    active: bool,
+    username: &str,
+    email: &str,
+    sign_in_count: u64,
+}
+
+fn main() {
+    let user1 = User {
+        active: true,
+        username: "someusername123",
+        email: "someone@example.com",
+        sign_in_count: 1,
+    };
+}
+```
+
+The compiler will complain that it needs lifetime specifiers:
+
+```
+$ cargo run
+   Compiling structs v0.1.0 (file:///projects/structs)
+error[E0106]: missing lifetime specifier
+ --> src/main.rs:3:15
+  |
+3 |     username: &str,
+  |               ^ expected named lifetime parameter
+  |
+help: consider introducing a named lifetime parameter
+  |
+1 ~ struct User<'a> {
+2 |     active: bool,
+3 ~     username: &'a str,
+  |
+
+error[E0106]: missing lifetime specifier
+ --> src/main.rs:4:12
+  |
+4 |     email: &str,
+  |            ^ expected named lifetime parameter
+  |
+help: consider introducing a named lifetime parameter
+  |
+1 ~ struct User<'a> {
+2 |     active: bool,
+3 |     username: &str,
+4 ~     email: &'a str,
+  |
+
+For more information about this error, try `rustc --explain E0106`.
+error: could not compile `structs` due to 2 previous errors
+```
+
+In Chapter 10, we'll discuss how to fix these errors so you can store references in structs, but for now, we'll fix errors like these using owned types like `String` instead of references like `&str`.
+
 ##
