@@ -387,4 +387,38 @@ Our function signature for `area` now says exactly what we mean:calculate the ar
 This conveys that the width and height are related to each other, and it gives descriptive names to the values rather than using the tuple index values of `0` and `1` .
 This is a win for clarity.
 
+## Adding Useful Functionality width Derived Traits
+
+It'd be useful to be able to print an instance of `Rectangle` while we're debugging our program and see the values for all its fields.
+Listing 5-11 tries using the [`println!` macro](https://doc.rust-lang.org/std/macro.println.html) as we have used in previous chapters.
+This won't work, however.
+
+```rust
+fn main() {
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
+
+    println!("rect1 is {}", rect1);
+}
+```
+
+Listing 5-11:Attempting to print a `Rectangle` instance
+
+When we compile this code, we get an error width this core message:
+
+```
+error[E0277]: `Rectangle` doesn't implement `std::fmt::Display`
+```
+
+The `println!` macro can do many kinds of formatting, and by default, the curly brackets tell `println!` to use formatting known as `Display`: output intended for direct end user consumption.
+The primitive types we've seen so far implement `Display` by default because there's only one way you'd want to show a `1` or any other primitive type to a user.
+But width structs, the way `println!` should format the output is less clear tuples don't name their elements, so we have to index into the parts of the tuple, making our calculation less obvious.
+
+Mixing up the width and height wouldn't matter for the area calculating, but if we want to draw the rectangle on the screen, it would matter!
+We would have to keep in mind that `width` is the tuple index `0` and `height` is the tuple index `1`.
+This would be even harder for someone else to figure out and keep in mind if they were to use our code.
+Because we haven't conveyed the meaning of our data in our code, it's now easier to introduce errors.
+
 ##
