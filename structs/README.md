@@ -315,4 +315,33 @@ The `area` function is supposed to calculate the area of one rectangle, but the 
 It would be more readable and more manageable to group width and height together.
 We've already discussed one way we might do that in ["The Tuple Type"](https://doc.rust-lang.org/book/ch03-02-data-types.html#the-tuple-type) section of Chapter 3:by using tuples.
 
+## Refactoring with Tuples
+
+Listing 5-9 shows another version of our program that uses tuples.
+
+```rust
+fn main() {
+    let rect1 = (30, 50);
+
+    println!(
+        "The area of the rectangle is {} square piexels.",
+        area(rect1)
+    )
+}
+
+fn area(dimension: (u32, u32)) -> u32 {
+    dimension.0 * dimension.1
+}
+```
+
+Listing 5-9:Specifying the width and height of the rectangle width a tuple
+
+In one way, this program is better.
+Tuples let us add a bit of structure, and we're now passing just one argument.
+But in another way, this version is less clear:tuples don't name their elements, so we have to index into the parts of the tuple, making our calculation less obvious.
+
+Mixing up the width and height wouldn't matter for the area calculation, but if we want to draw the rectangle on the screen, it would matter!
+We would be even harder for someone else to figure out and keep in mind if they were to use our code.
+Because we haven't conveyed the meaning of our data in our code, it's now easier to introduce errors.
+
 ##
