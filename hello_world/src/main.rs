@@ -1,7 +1,33 @@
+#[derive(Default)]
+struct Person {
+    first_name: String,
+    last_name: String,
+}   
+
+impl Person {
+    fn first_name(&self) -> &str {
+        &self.first_name
+    }
+
+    fn last_name(&self) -> &str {
+        &self.last_name
+    }
+
+    fn first_name_mut(&mut self) -> &mut String {
+        &mut self.first_name
+    }
+    fn last_name_mut(&mut self) -> &mut String {
+        &mut self.last_name
+    }
+}
+
 fn main() {
-    let a = [1, 2, 3, 4, 5];
+    let mut yusril = Person::default();
 
-    let slice = &a[1..3];
+    *yusril.first_name_mut() = String::from("Yusril");
+    *yusril.last_name_mut() = "Arzaqi".into();
 
-    assert_eq!(slice, &[2, 3]);
+    println!("first name : {}", yusril.first_name());
+    println!("last name : {}", yusril.last_name());
+
 }

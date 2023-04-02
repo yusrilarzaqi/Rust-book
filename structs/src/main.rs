@@ -1,15 +1,26 @@
-#[derive(Debug)]
 struct Rectangle {
     width: u32,
     height: u32,
 }
 
+impl Rectangle {
+    fn width(&self) -> bool {
+        self.width > 0
+    }
+}
+
 fn main() {
-    let scale = 2u32;
     let rect1 = Rectangle {
-        width: dbg!(30 * scale),
+        width: 30,
         height: 50,
     };
 
-    dbg!(&rect1);
+    if rect1.width() {
+        println!("The rectangle has a nonzero width; it is {}", rect1.width);
+    }
+
+    let height = rect1.height;
+
+    println!("height : {}", height);
+    println!("height : {}", rect1.height);
 }
