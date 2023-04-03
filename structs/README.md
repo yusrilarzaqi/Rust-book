@@ -733,4 +733,32 @@ Listing 5-15:Implementation the `can_hold` method on `Rectangle` that takes anot
 When we run this code with the `main` function in Listing 5-14, we'll get our desired output.
 Methods can take multiple parameters that we add to the signature after the `self` parameter, and these parameters work just like parameters in functions.
 
+## Associated Function
+
+All function defined within an `impl` block are called _associated function_ because they're associated with the named after the `impl`.
+We an define associated function that don't have `self` as their first parameter (and thus are not methods) instance they don't need an instane of they type to work with.
+We've already used the function like this:the `String::from` that's defined on the `String` type
+
+Associated functions that aren't methods are often used for constructors that will return a new instance of the struct.
+These are often called `new`, but `new` isn't a special name and isn't built into the language.
+For example, we could choose to provide an associated function named `square` that would have one dimension parameter and use that as both width and height, thus making it easier to create a square `Rectangle` rather than having to specify the same value twice.
+
+```rust
+impl Rectangle {
+    fn square(size: u32) -> Self {
+        Self {
+            width: size,
+            height: size,
+        }
+    }
+
+}
+```
+
+The `Self` keyword in the return type and in the body of the function are aliases for the type that appears after the `impl` keyword, which in this case is `Rectangle`.
+
+To call this associated function, we use the `::` syntax with the struct name; `let sq = Rectangle::square(3);` is an example.
+This function is namespaces created by modules.
+We'll discuss modules in [Chapter 7](https://doc.rust-lang.org/book/ch07-02-defining-modules-to-control-scope-and-privacy.html).
+
 ##
