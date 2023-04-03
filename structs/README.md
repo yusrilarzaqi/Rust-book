@@ -761,4 +761,28 @@ To call this associated function, we use the `::` syntax with the struct name; `
 This function is namespaces created by modules.
 We'll discuss modules in [Chapter 7](https://doc.rust-lang.org/book/ch07-02-defining-modules-to-control-scope-and-privacy.html).
 
+## Multiple `impl` Blocks
+
+Each struct is allowed to have multiple `impl` blocks.
+For example, Listing 5-15 is equivalent to the code shown in Listing 5-16, which has each method in its own `impl` block.
+
+```rust
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+}
+
+impl Rectangle {
+    fn can_hold(&self, other: &Rectangle) -> bool {
+        self.width > other.width && self.height > other.height
+    }
+}
+```
+
+Listing 5-16:Rewriting Listing 5-13 using multiple `imple` bloccks
+
+There's no reason to separate these methods into mutliple `impl` bloccks here, this is valid syntax.
+We'll see a cccase in which multiple `imple` blocks are useful in Chapter 10, where we discuss generic types and traits.
+
 ##
