@@ -785,4 +785,12 @@ Listing 5-16:Rewriting Listing 5-13 using multiple `imple` bloccks
 There's no reason to separate these methods into mutliple `impl` bloccks here, this is valid syntax.
 We'll see a cccase in which multiple `imple` blocks are useful in Chapter 10, where we discuss generic types and traits.
 
+## Summary
+
+Struct let you create custom types that are meaningful for your domain.
+By using struct, you can keep associated pieces of data connected to each other and name each place to make you code clear.
+In `impl` bloccks, you can define function that are associated with you type, and methods are a kind of associated funcction that let you specify the behavior that instancces of you struct have.
+
+But strucccts aren't only way you an reate ustom types: let's turn to Rust's enum feature to add another tool to your toolbox.
+
 ##
