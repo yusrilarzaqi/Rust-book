@@ -1,27 +1,17 @@
-struct QuitMessage;  // unit
-struct MoveMessage {
-    x: i32,
-    y: i32,
-}
-struct WriteMessage(String); // tuple struct
-struct ChangeColor(i32, i32, i32); // tuple struct
-
-enum Message {
-    Quit,
-    Move { x: i32, y: i32 },
-    Write(String),
-    ChangeColor(i32, i32, i32),
-}
-
-impl Message {
-    fn call(&self) {
-        // method method would be defined here
-    }
-}
-
+use std::ops::Div;
 
 fn main() {
-    let m = Message::Write(String::from("Hello"));
+    // let x = 5;
+    // let y = Some(4);
+    // let sum = x + y;
 
-    m.call();
+    // println!("{:#?}", sum);
+
+    let x: i8;
+
+    x = 10;
+
+    let y = x.div(5);
+
+    println!("{}", y);
 }

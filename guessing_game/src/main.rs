@@ -3,15 +3,7 @@ use std::cmp::Ordering;
 use std::io;
 
 fn main() {
-    let num = io::stdout;
-
-    fn test() {
-        let num = 20;
-        println!("{num}");
-    }
-
-    test();
-    println!("{num}");
+    let num = io::stdout; 
 
     let secret_number = rand::thread_rng().gen_range(1..=100);
 
