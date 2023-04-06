@@ -1,17 +1,29 @@
-use std::ops::Div;
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter,
+}
 
 fn main() {
-    // let x = 5;
-    // let y = Some(4);
-    // let sum = x + y;
+    // let x = value_in_cents(Coin::Quarter);
 
-    // println!("{:#?}", sum);
+    // println!("{}", x);
 
-    let x: i8;
+    let y = Coin::Penny;
+    let x = value_in_cents(y);
 
-    x = 10;
+    println!("{}", x);
+}
 
-    let y = x.div(5);
-
-    println!("{}", y);
+fn value_in_cents(coin: Coin) -> u8 {
+    match coin {
+        Coin::Penny => {
+            println!("Lucky Penny!");
+            1
+        }
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter => 25,
+    }
 }
