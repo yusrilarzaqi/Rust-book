@@ -1,13 +1,11 @@
-fn plus_one(x: Option<i32>) -> Option<i32> {
-    match x {
-        Some(i) => Some(i + 1),
-        None => None,
-    }
-}
-
 fn main() {
-    let x = Some(2);
-    let y = plus_one(x);
-
-    println!("{:#?}", y);
+	match dice_roll {
+		3 => add_fancy_hat(),
+		7 => remove_fancy_hat(),
+		other => move_player(),
+	}
 }
+
+fn add_fancy_hat() {}
+fn remove_fancy_hat() {}
+fn move_player(num: u8) {}

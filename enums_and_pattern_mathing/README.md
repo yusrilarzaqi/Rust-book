@@ -256,5 +256,27 @@ Rust know that we didn't cover every possible case, and even knows which we forg
 Matches in Rust _exhaustive_: we must exhaust every last possbile in order for the code to be valid.
 Especially in the case of `Option<T>`, when Rust prevents us from forgetting to explicitly handle the `None` case, it protects us from assuming that we have a value when we might have null, thus making the billion-dolar discussed earlier impossible.
 
+## Catch-all Patterns and the `_` Placeholder
+
+Using enums, we can also take special actions for a few particular values. but for all other values take one default action.
+Imagine we're implementing a game where, if you roll a 3 on a dice roll. your player doesn't move, but instead get a new fancy hat.
+If you roll a 7, your player loses a fancy hat.
+For all other, your player moves that number of spaces on the game board.
+Here's a `match` that implements that logic, with the result of the dice roll hardcoded rahter than a random value, and all other logic represented by functions without bodies because actually implementing them is out of scope for this example:
+
+```rust
+fn main() {
+	match dice_roll {
+		3 => add_fancy_hat(),
+		7 => remove_fancy_hat(),
+		other => move_player(),
+	}
+}
+
+fn add_fancy_hat() {}
+fn remove_fancy_hat() {}
+fn move_player(num: u8) {}
+```
+
 
 ##
