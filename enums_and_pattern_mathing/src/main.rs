@@ -1,11 +1,15 @@
 fn main() {
+    let dice_roll = 3;
 	match dice_roll {
 		3 => add_fancy_hat(),
 		7 => remove_fancy_hat(),
-		other => move_player(),
+		_ => (),
 	}
 }
 
-fn add_fancy_hat() {}
-fn remove_fancy_hat() {}
-fn move_player(num: u8) {}
+fn add_fancy_hat() {
+    println!("Fancy hat added")
+}
+fn remove_fancy_hat() {
+    println!("Fancy hat removed")
+}
