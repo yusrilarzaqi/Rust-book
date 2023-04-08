@@ -12,4 +12,4 @@
 
 ## [Enums And Pattern Matching](https://github.com/yusrilarzaqi/Rust-book/tree/main/enums_and_pattern_mathing)
 
-## [Managing Growing Projects with Packages, Crates, and Modules]()
+## [Managing Growing Projects with Packages, Crates, and Modules](https://github.com/yusrilarzaqi/Rust-book/tree/main/managing_growing_projects_with_packages_crates_and_modules)
