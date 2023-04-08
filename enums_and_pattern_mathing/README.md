@@ -722,4 +722,11 @@ fn main() {
 
 If you have a situation in which your program has logic that is too verbose to express using a `match`, remember that `if let` is in your Rust toolbox as well.
 
-##
+## Summary
+
+We've now covered how to use enums to create custom types that can be one of a set of enumerated value.
+We've shown how the standard library's `Option<T>` type help you use the type system too prevent errors.
+When enum values have data inside them, you can use `match` or `if let` to extract and use those values, depending on how many cases you need to handle.
+
+Your Rust programs can now express concepts in your domain using structs and enums.
+Creating custom types to use in your API ensures type safety: the compiler will make certain your functions only get values of the type each function expects.
