@@ -1,15 +1,24 @@
+#[derive(Debug)]
+enum UsState {
+    Albama,
+    Alaska,
+    // etc
+}
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter(UsState),
+}
 fn main() {
-    let dice_roll = 3;
-	match dice_roll {
-		3 => add_fancy_hat(),
-		7 => remove_fancy_hat(),
-		_ => (),
-	}
-}
+    let mut count = 0;
+    let coin = Coin::Quarter(UsState::Albama);
 
-fn add_fancy_hat() {
-    println!("Fancy hat added")
-}
-fn remove_fancy_hat() {
-    println!("Fancy hat removed")
+    if let Coin::Quarter(state) = coin {
+        println!("State quarter from {:?}!", state);
+    } else {
+        count += 1;
+    }
+
+    println!("Count : {}", count);
 }
