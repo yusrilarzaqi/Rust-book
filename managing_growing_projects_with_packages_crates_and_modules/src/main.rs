@@ -1,8 +1,6 @@
-use crate::garden::vegatables::Aspargus;
+use managing_growing_projects_with_packages_crates_and_modules::eat_at_restaurant;
 
-pub mod garden;
 
 fn main() {
-    let plant = Aspargus {};
-    println!("I'm growing {:?}!", plant);
+    eat_at_restaurant();
 }
