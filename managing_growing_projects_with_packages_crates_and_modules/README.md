@@ -458,4 +458,16 @@ If you plan on sharing your library crate so other projects can use you code, yo
 There are many considerations around managing changes to your public API to make it easier for people to depend on you crate.
 These considerations are out of the scope of this book; if you're interested in this topic, see [The Rust API Guidelines](https://rust-lang.github.io/api-guidelines/).
 
+### Best Practice for Packages with a Binary
+
+We mentioned a package can contain both a _src/main.rs_ binary crate root as well as a _src/lib.rs_ library crate root, and both crates will have the package name by default.
+Typically, packages with this pattern of containing both a library and a binary crate will have just enough code in the binary crate to start an executable that calls code with the library crate.
+This lets other projects benefit from the most functionality that the package provides, because the library crate's code can be shared.
+
+The module tree should be defined in _src/lib.rs_.
+Then, any public items can be used in the binary crate by starting paths with the name of the package.
+The binary crate becomes a user of the library crate just like a completely external crate would use the library crate: it can only use the public API.
+This helps you design a good API; not only are you the author, you're also a client!
+
+in [Chapter 12](https://doc.rust-lang.org/book/ch12-00-an-io-project.html), we'll demonstrate this organizational practice with a command-line program that will contain both a binary crate and a library crate
 ##
