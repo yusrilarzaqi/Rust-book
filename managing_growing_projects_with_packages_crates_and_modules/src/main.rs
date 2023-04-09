@@ -1,5 +1,8 @@
-use managing_growing_projects_with_packages_crates_and_modules::customer;
+use std::collections::HashMap;
 
 fn main() {
-    customer::eat_at_restaurant();
+    let mut map = HashMap::new();
+    map.insert(1, 2);
+
+    println!("map: {:#?}", map);
 }

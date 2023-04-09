@@ -1,17 +1,10 @@
-mod front_of_house {
-    pub mod hosting {
-        pub fn add_to_waitlist() {
-            println!("added to waitlist")
-        }
-    }
+use std::fmt;
+use std::io;
+
+fn function1() -> fmt::Result {
+    // --snip--
 }
 
-// use crate::front_of_house::hosting;
-
-pub mod customer {
-    use super::front_of_house::hosting;
-
-    pub fn eat_at_restaurant() {
-        hosting::add_to_waitlist();
-    }
+fn function2( ) -> io::Result<()> {
+    // --snip--
 }
