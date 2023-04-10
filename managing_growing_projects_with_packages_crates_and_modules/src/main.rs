@@ -1,5 +1,3 @@
-use std::io::{self, Write};
+use std::collections::*;
 
-fn main() {
-    let num = io::stdin();
-}
+fn main() {}

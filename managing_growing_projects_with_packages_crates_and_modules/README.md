@@ -879,4 +879,19 @@ Listing 7-20: Combining the paths in Listing 7-19 into one `use` statements.
 
 This line brings `std::io` and `std::io::Write` into scope.
 
+## The Glob Operator
+
+If we want to bring _all_ public items defined in a path into scope, we can specify that path followed by the `*` glob operator:
+
+```rust
+use std::collections::*;
+```
+
+This `use` statement brings all public items defined in `std::collections` into the current scope.
+Be careful when the glob operator!
+Glob can make it harder to tell what names are in scope and where a name used in your program was defined.
+
+The glob operator in often used when testing to bring everything under test into the `tests` module; we'll talk about that in the ["How to Write Tests"](https://doc.rust-lang.org/book/ch11-01-writing-tests.html#how-to-write-tests) section in Chapter 11.
+The glob operator is also sometimes used as part of the prelude pattern: see [the standard library documentation](https://doc.rust-lang.org/std/prelude/index.html#other-preludes) for more information on that pattern.
+
 ##
