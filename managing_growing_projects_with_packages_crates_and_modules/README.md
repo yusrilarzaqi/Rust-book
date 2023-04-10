@@ -792,6 +792,40 @@ With `pub use`, we can write our code with one structure but expose a different 
 Doing so makes our library well organized for programmers working on the library and programmers calling the library.
 We'll look at another example of `pub use` and how it affects your crate's documentation in the ["Exporting a Convenient Public API with `pub use`"](https://doc.rust-lang.org/book/ch14-02-publishing-to-crates-io.html#exporting-a-convenient-public-api-with-pub-use) section of Chapter 14.
 
+## Using External packages
 
+In Chapter 2, we programmed a guessing game project that used an external package called `rand` to get random numbers.
+To use `rand` in our project, we added this line to _Cargo.toml_:
+
+```toml
+rand = "0.8.5"
+```
+
+Adding `rand` as a dependency in _Cargo.toml_ tells Cargo to download the `rand` package and any dependencies from [crates.io](https://crates.io/) and make `rand` available to our project.
+
+Then, to bring `rand` definitions into the scope of our package, we added a `use` line starting with the name of the crate, `rand`, and listed the items we wanted to bring into scope.
+Recall that in the ["Generating a Random Number"](https://doc.rust-lang.org/book/ch02-00-guessing-game-tutorial.html#generating-a-random-number) section in Chapter 2, we brought the `Rng` trait into scope and called the `rand::thread_rng` function:
+
+```rust
+use rand::Rng;
+
+fn main() {
+    let secret_number = rand::thread_rng().gen_range(1..=100);
+    println!("secret_number : {}", secret_number);
+}
+```
+
+Members of the Rust community have made many package available at [crates.io](https://crates.io), and pulling any of them into your package involves these same steps: listing them in your package's _Cargo.toml_ file and using `use` to bring items from their crates into scope.
+
+Note than the standard `std` library is also a crate that's external to our package.
+Because the standard library is shipped with the Rust language, we don't need to change _Cargo.toml_ to include `std`.
+But we do need to refer to it with `use` to bring items from there into our package's scope.
+For example, with `HashMap` we would use this line:
+
+```rust
+use std::collections::HashMap;
+```
+
+This is an absolute path starting with `std`, the name of the standard library crate.
 
 ##
