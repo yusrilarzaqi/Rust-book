@@ -961,4 +961,16 @@ pub fn add_to_waitlist() {}
 If we instead put _hosting.rs_ in the _src_ directory, the compiler would expect the _hosting.rs_ code to be in a `hosting` module declared in the crate root, and not declared as child of the `front_of_house` module.
 The compiler's rules for which to check for which modules' code means the directories and files more closely match the module tree.
 
+### Alternate File Paths
+
+So far we've covered the most idiomatic file paths the Rust compiler uses, but Rust also supports an older style of file path.
+For a module named `front_of_house` declared in the crate root, the compiler will look for the module's code in:
+
+- _src/front_of_house.rs_ (what we covered)
+- _src/front_of_house/mod.rs_ (older style, still supported path)
+
+{% pullquote %}
+text {" quote "} text
+{% endpullquote %}
+
 ##
