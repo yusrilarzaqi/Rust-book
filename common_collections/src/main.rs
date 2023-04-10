@@ -1,3 +1,6 @@
 fn main() {
-    println!("Hello, world!");
+    // let v: Vec<i32> = Vec::new();
+    let v = vec![1, 2, 3];
+
+    println!("{v:#?}");
 }
