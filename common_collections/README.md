@@ -15,3 +15,12 @@ In this chapter, we'll discuss three collections that are used very often in Rus
 To learn about the other kinds of collections provided by the standard library, see [the documentation](https://doc.rust-lang.org/std/collections/index.html).
 
 We'll discuss how to create and update vectors, strings, and hash maps, as well as what makes each special.
+
+## Storing Lists of value with Vectors
+
+The first collection type we'll look at is `Vec<T>`, also known as a _vector_.
+Vectors allow you to store more than one value in a single data structure that puts all the values next to each other in memory.
+Vectors can only store values of the some type.
+They are useful when you have a list of items, such as the lines of text in a file or the prices of items in a shopping cart.
+
+##
