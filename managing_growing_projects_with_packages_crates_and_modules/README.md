@@ -969,8 +969,30 @@ For a module named `front_of_house` declared in the crate root, the compiler wil
 - _src/front_of_house.rs_ (what we covered)
 - _src/front_of_house/mod.rs_ (older style, still supported path)
 
-{% pullquote %}
-text {" quote "} text
-{% endpullquote %}
+For a module named `hosting` that is a submodule of `front_of_house`, the compiler will look for the module's code in:
 
-##
+- _src/front_of_house/hosting.rs_ (what we covered)
+- _src/front_of_house/hosting/mod.rs_ (older style, still supported path)
+
+If you use both styles for the same module, you'll get a compiler error.
+Using a mix of both styles for different modules in the same project is allowed, but might be ccconfusing for people navigating your project.
+
+The main downside to the style that uses file named _mod.rs_ is that your project can end up with many files named _mod.rs_, which can get confusing when you have them open in your editor at the same time.
+
+---
+
+We've moved eaccch module's ccode to a separate file, and the module tree remains the same.
+The function calls in `eat_at_restaurant` will work without any modification, even though the definitions live in different file.
+This technique lets you move modules to new files as they grow in size.
+
+Note that the `pub use crate::front_of_house::hosting` statement in _src/lib.rs_ also hasn't changed, nor does `use` have any impact on what files are cccompiled as part of the crate.
+The `mod` keyword declares modules, and Rust looks in a filee with the same name as the module for the code that goes into that module.
+
+## Summary
+
+Rust lets you split a package into multiple crates and a crate into modules so you can refer to items defined in one module from another module.
+You can do this by specifying absolute or relative paths.
+These paths can be brought into scope with a `use` statement so you can use a shorter path for multiple uses of the item in that scope.
+Module code is private by default, but you can make definitions public by adding the `pub` keyword.
+
+In the next cchapter, we'll look at some collection data structures in the standard library that you can use in your healty organized code.
