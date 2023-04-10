@@ -894,4 +894,71 @@ Glob can make it harder to tell what names are in scope and where a name used in
 The glob operator in often used when testing to bring everything under test into the `tests` module; we'll talk about that in the ["How to Write Tests"](https://doc.rust-lang.org/book/ch11-01-writing-tests.html#how-to-write-tests) section in Chapter 11.
 The glob operator is also sometimes used as part of the prelude pattern: see [the standard library documentation](https://doc.rust-lang.org/std/prelude/index.html#other-preludes) for more information on that pattern.
 
+## Separating Modules into Different Files
+
+So far, all the examples in this chapter defined multiple modules in one file.
+When modules get large, you might to move their definitions to a separate file to make the code easier to navigate.
+
+For example, let's start from the code in Listing 7-17 that had multiple restaurant modules.
+We'll extract modules into files instead of having all the modules defined in the crate root file.
+In this case, the crate root file is _src/lib.rs_, but this procedure also works with binary crates whose crate root file is _src/main.rs_.
+
+First, we'll extract the `front_of_house` module to its own file.
+Remove the code inside the curly brackets for the `front_of_house` module, leaving only the `mod front_of_house;` declaration, so that _src/lib.rs_ contains the code shown in Listing 7-21.
+Note that this won't compile until we create the _src/front_of_house.rs_ file in Listing 7-22.
+
+Filename: _src/lib.rs_
+
+```rust
+mod front_of_house;
+
+pub use crate::front_of_house::hosting;
+
+pub fn eat_at_restaurant() {
+    hosting::add_to_waitlist();
+}
+```
+
+Listing 7-21: Declaring the `front_of_house` module whose body will be in _src/front_of_house.rs_
+
+Next, place the code that was in the curly brackets into a new file named _src/front_of_house.rs_, as shown in Listing 7-22.
+The compiler knows to lock in this file because it came across the module declaration in the crate root with the name `front_of_house`.
+
+Filename: _src/front_of_house.rs_
+
+```rust
+pub mod hosting {
+    pub fn add_to_waitlist() {}
+}
+```
+
+Listing 7-22: Definitions inside the `front_of_house` module in _src/front_of_house.rs_.
+
+Note that you only need to load a file using a `mod` declaration _once_ in your module tree.
+Once the compiler knows the file is part of the project (and knows where in the module tree the code resides because of where you've put the `mod` statement), other files in your project should refer to the loaded file's code using a path to where it was declared, as covered in the ["Path for Referring to an item in the Module Tree"](https://doc.rust-lang.org/book/ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html) section.
+In other words, `mod` is _not_ an "include" operation that you may have seen in other programming languages.
+
+Next, we'll extract the `hosting` module to its own file.
+The process is a bit different because `hsting` is a child module of `front_of_house`, not of the root module.
+We'll place the file for `hosting` in a new directory that will be named for its ancestors in the module tree, in this case _src/front_of_house/_.
+
+To start moving `hosting`, we change _src/front_of_house.rs_ to contain only declaration of the `hosting` module:
+
+Filename: _src/front_of_house.rs_
+
+```rust
+pub mod hosting;
+```
+
+Then we create a _src/front_of_house_ and a file _hosting.rs_ to contain the definitions made in the `hosting` module:
+
+Filename: _src/front_of_house/hosting.rs_
+
+```rust
+pub fn add_to_waitlist() {}
+```
+
+If we instead put _hosting.rs_ in the _src_ directory, the compiler would expect the _hosting.rs_ code to be in a `hosting` module declared in the crate root, and not declared as child of the `front_of_house` module.
+The compiler's rules for which to check for which modules' code means the directories and files more closely match the module tree.
+
 ##
