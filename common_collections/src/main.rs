@@ -1,10 +1,9 @@
 fn main() {
-    let mut v = Vec::new();
+    let mut v = vec![1, 2, 3, 4, 5];
 
-    v.push(5);
+    let first = &v[0];
+
     v.push(6);
-    v.push(7);
-    v.push(8);
 
-    println!("v : {v:#?}");
+    println!("The first element is: {first}");
 }
