@@ -1,24 +1,24 @@
-#[derive(Debug)]
-enum SpreadsheetCell {
-    Int(i32),
-    Float(f64),
-    Text(String),
-}
-
 fn main() {
-    let row = vec![
-        SpreadsheetCell::Int(3),
-        SpreadsheetCell::Text(String::from("blue")),
-        SpreadsheetCell::Float(10.12),
-    ];
-
-    for i in &row {
-        println!("i: {i:#?}");
-    }
-
-    {
-        let v = vec![1, 2, 3, 4];
-
-        // do stuff with v
-    } // <-- goes out of scope is freed here
+    let hello = String::from("السلام عليكم");
+    println!("{hello}");
+    let hello = String::from("Dobrý den");
+    println!("{hello}");
+    let hello = String::from("Hello");
+    println!("{hello}");
+    let hello = String::from("שָׁלוֹם");
+    println!("{hello}");
+    let hello = String::from("नमस्ते");
+    println!("{hello}");
+    let hello = String::from("こんにちは");
+    println!("{hello}");
+    let hello = String::from("안녕하세요");
+    println!("{hello}");
+    let hello = String::from("你好");
+    println!("{hello}");
+    let hello = String::from("Olá");
+    println!("{hello}");
+    let hello = String::from("Здравствуйте");
+    println!("{hello}");
+    let hello = String::from("Hola");
+    println!("{hello}");
 }

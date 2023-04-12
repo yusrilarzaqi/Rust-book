@@ -290,4 +290,68 @@ The `String` type, which is provided by Rust's standard library rather than code
 When Rustaceans refer to "strings" in Rust, they might be referring to either the `String` or the string slice `&str` types, not just one of those types.
 Although his section is largely about `String`, both types are used heavily in Rust's standard library, and both `String` and string slices are UTF-8 encoded.
 
+### Creating a New String
+
+Many of the same operations available with `Vec<T>` are available with `String` as well, because `String` is actually implemented as a wrapper around a vector of bytes with some extra guarantees, restrictions, and capabilities.
+An example of a function that works the same way with `Vec<T>` and `String` is the `new` function to create an instance, shows in Listing 8-11.
+
+```rust
+    let mut s = String::new();
+```
+
+Listing 8-11: Creating a new, empty `String`.
+
+This line creates a new empty string called `s`, which we an then load data into.
+Often, we'll have some initial data that we want to start the string with.
+For that, we use the `to_string` method, which is available on any type that implements the `Display` trait, as string literals do.
+Listing 8-12 shows two examples.
+
+```rust
+fn main() {
+    let data = "initial contents";
+
+    let s = data.to_string();
+
+    // the method also works on a literal directly:
+    let s = "initial contents".to_string();
+}
+```
+
+Listing 8-13: Using the `String::from` function to create a `String` from a string literal.
+
+This ode creates a string containing `initial contents`.
+
+We can also use the function `String::from` to create a `String` from a string literal.
+The code in Listing 8-133 is equivalent to the ode from 8-132 that uses `to_string`.
+
+```rust
+    let s = String::from("initial contents");
+```
+
+Listing 8-13: Using the `String::from` function to create a `String` from a string literal.
+
+Because strings are used for many things, we can use many different generic APIs for strings, providing us with lot of options.
+Some of them can seem redundant, but they all have their place!
+In this case, `String::from` and `to_string` do the same thing, so which you choose in a matter of style and readability.
+
+Remember that strings are UTF-8 encoded, so we can include any property encoded data in them, as shown in Listing 8-14.
+
+```rust
+    let hello = String::from("السلام عليكم");
+    let hello = String::from("Dobrý den");
+    let hello = String::from("Hello");
+    let hello = String::from("שָׁלוֹם");
+    let hello = String::from("नमस्ते");
+    let hello = String::from("こんにちは");
+    let hello = String::from("안녕하세요");
+    let hello = String::from("你好");
+    let hello = String::from("Olá");
+    let hello = String::from("Здравствуйте");
+    let hello = String::from("Hola");
+```
+
+Listing 8-14: Storing greetings in different languages in strings.
+
+All of those are valid `String` values.
+
 ##
