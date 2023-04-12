@@ -2,7 +2,7 @@
 enum SpreadsheetCell {
     Int(i32),
     Float(f64),
-    Text(String)
+    Text(String),
 }
 
 fn main() {
@@ -15,4 +15,10 @@ fn main() {
     for i in &row {
         println!("i: {i:#?}");
     }
+
+    {
+        let v = vec![1, 2, 3, 4];
+
+        // do stuff with v
+    } // <-- goes out of scope is freed here
 }
