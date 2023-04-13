@@ -44,6 +44,13 @@ fn concatenation_with_format_macro() {
 }
 
 fn indexing_into_strings() {
-    let s1 = String::from("Hello");
-    let h = s1[0];
+    // let s1 = String::from("Hello");
+    // let h = s1[0];
+
+    // let hello = String::from("Здравствуйте");
+    // if let Some(chr) = hello.chars().nth(1) {
+    //     println!("{chr}");
+    // } else {
+    //     println!("idk");
+    // }
 }
