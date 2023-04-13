@@ -1,5 +1,5 @@
 fn main() {
-    concatenation_with_format_macro();
+    indexing_into_strings();
 }
 
 #[allow(dead_code)]
@@ -33,6 +33,7 @@ fn concatenation_with_operator() {
     println!("s: {s}");
 }
 
+#[allow(dead_code)]
 fn concatenation_with_format_macro() {
     let s1 = String::from("tic");
     let s2 = String::from("tac");
@@ -40,4 +41,9 @@ fn concatenation_with_format_macro() {
 
     let s = format!("{s1}-{s2}-{s3}");
     println!("s: {s}");
+}
+
+fn indexing_into_strings() {
+    let s1 = String::from("Hello");
+    let h = s1[0];
 }
