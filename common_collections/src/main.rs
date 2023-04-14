@@ -1,5 +1,5 @@
 fn main() {
-    indexing_into_strings();
+    slicing_string();
 }
 
 #[allow(dead_code)]
@@ -53,4 +53,10 @@ fn indexing_into_strings() {
     // } else {
     //     println!("idk");
     // }
+}
+
+fn slicing_string() {
+    let hello = "Здравствуйте";
+    let s = &hello[..3];
+    println!("s: {s}");
 }
