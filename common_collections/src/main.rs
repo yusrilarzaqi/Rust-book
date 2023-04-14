@@ -1,5 +1,5 @@
 fn main() {
-    slicing_string();
+    methods_for_iterating();
 }
 
 #[allow(dead_code)]
@@ -43,6 +43,7 @@ fn concatenation_with_format_macro() {
     println!("s: {s}");
 }
 
+#[allow(dead_code)]
 fn indexing_into_strings() {
     // let s1 = String::from("Hello");
     // let h = s1[0];
@@ -55,8 +56,18 @@ fn indexing_into_strings() {
     // }
 }
 
+#[allow(dead_code)]
 fn slicing_string() {
     let hello = "Здравствуйте";
     let s = &hello[..3];
     println!("s: {s}");
+}
+
+fn methods_for_iterating() {
+    // for c in "Зд".chars() {
+    //     println!("{c}");
+    // }
+    for b in "Зд".bytes() {
+        println!("{b}");
+    }
 }

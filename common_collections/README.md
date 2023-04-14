@@ -614,4 +614,37 @@ note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 
 You should use ranges to create string slices with caution, because doing so can crash your program.
 
+### Methods for Iterating Over String
+
+The best way to operate on pieces of strings is to be explicit about whether you want characters or bytes.
+For individual Unicode scalar values, use the `chars` method.
+Calling `chars` on "Зд" separates out and returns two values of type `char`, and you can iterate over the result to access each element:
+
+```rust
+for c in "Зд".chars() {
+    println!("{c}");
+}
+```
+
+This code will print the following:
+
+```
+З
+д
+```
+
+Alternatively, the `bytes` method returns each raw byte, which might appropriate for your domain:
+
+```
+208
+151
+208
+180
+```
+
+But be sure to remember that valid Unicode scalar values may be made up of more then 1 byte.
+
+Getting grapheme clusters from strings as with the Devangari script is complex, so this functionality is not provided by the standard library.
+Crates are available on [crates.io](https://crates.io/) if this the functionality you need.
+
 ##
