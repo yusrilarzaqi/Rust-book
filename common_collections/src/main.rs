@@ -1,5 +1,5 @@
 fn main() {
-    methods_for_iterating();
+    creating_a_new_hash_map();
 }
 
 #[allow(dead_code)]
@@ -63,6 +63,7 @@ fn slicing_string() {
     println!("s: {s}");
 }
 
+#[allow(dead_code)]
 fn methods_for_iterating() {
     // for c in "Зд".chars() {
     //     println!("{c}");
@@ -70,4 +71,15 @@ fn methods_for_iterating() {
     for b in "Зд".bytes() {
         println!("{b}");
     }
+}
+
+fn creating_a_new_hash_map() {
+    use std::collections::HashMap;
+
+    let mut scores = HashMap::new();
+
+    scores.insert(String::from("Blue"), 10);
+    scores.insert(String::from("Yellow"), 50);
+
+    println!("{scores:#?}");
 }
