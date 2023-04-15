@@ -1,5 +1,5 @@
 fn main() {
-    creating_a_new_hash_map();
+    accessing_values_in_a_hash_map();
 }
 
 #[allow(dead_code)]
@@ -73,6 +73,7 @@ fn methods_for_iterating() {
     }
 }
 
+#[allow(dead_code)]
 fn creating_a_new_hash_map() {
     use std::collections::HashMap;
 
@@ -82,4 +83,18 @@ fn creating_a_new_hash_map() {
     scores.insert(String::from("Yellow"), 50);
 
     println!("{scores:#?}");
+}
+
+fn accessing_values_in_a_hash_map() {
+    use std::collections::HashMap;
+
+    let mut scores = HashMap::new();
+
+    scores.insert(String::from("Blue"), 10);
+    scores.insert(String::from("Yellow"), 50);
+
+    for (key, value) in &scores {
+        println!("{key}: {value}");
+    }
+
 }
