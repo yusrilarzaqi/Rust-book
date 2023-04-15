@@ -1,5 +1,5 @@
 fn main() {
-    accessing_values_in_a_hash_map();
+    hash_map_and_ownership();
 }
 
 #[allow(dead_code)]
@@ -85,6 +85,7 @@ fn creating_a_new_hash_map() {
     println!("{scores:#?}");
 }
 
+#[allow(dead_code)]
 fn accessing_values_in_a_hash_map() {
     use std::collections::HashMap;
 
@@ -97,4 +98,17 @@ fn accessing_values_in_a_hash_map() {
         println!("{key}: {value}");
     }
 
+}
+
+fn hash_map_and_ownership() {
+    use std::collections::HashMap;
+
+    let field_name = String::from("Favorite color");
+    let field_value = String::from("Blue");
+
+    let mut map = HashMap::new();
+    map.insert(field_name, field_value);
+    // field_name and field_value are invalid at this point, try using them and
+    // see what compiler error you get
+    println!("{field_name}: {field_value}");
 }
