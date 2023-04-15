@@ -1,5 +1,5 @@
 fn main() {
-    overwriting_a_value();
+    adding_a_key_and_value();
 }
 
 #[allow(dead_code)]
@@ -97,7 +97,6 @@ fn accessing_values_in_a_hash_map() {
     for (key, value) in &scores {
         println!("{key}: {value}");
     }
-
 }
 
 #[allow(dead_code)]
@@ -124,4 +123,17 @@ fn overwriting_a_value() {
     scores.insert("Blue".to_string(), 25);
 
     println!("scores: {scores:#?}");
+}
+
+#[allow(dead_code)]
+fn adding_a_key_and_value() {
+    use std::collections::HashMap;
+
+    let mut scores = HashMap::new();
+    scores.insert(String::from("Blue"), 10);
+
+    scores.entry(String::from("Yellow")).or_insert(50);
+    scores.entry(String::from("Blue")).or_insert(50);
+
+    println!("{scores:#?}");
 }
