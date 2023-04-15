@@ -865,4 +865,20 @@ You don't necessarily have to implement your own hasher from scratch; [crates.io
 
 ¹ [https://en.wikipedia.org/wiki/SipHash](https://en.wikipedia.org/wiki/SipHash)
 
-##
+## Summary
+
+Vectors, Strings, and hash map will provide a large amount of functionality necessary in programs when you need to store, access, and modify data.
+Here are some exercises you should now be equipped to solve:
+
+- Given a list of integers, use a vector and return the median (when sorted, the value in the middle position) and mode (the value that occurs most often; a hash map will be helpful here) of the list.
+- Convert strings to pig latin.
+  - The first consonant of each word is moved to the end of the word and "ay" is added, so becomes "irst-fay".
+  - Words that start with a vowel have "hay" added to the end instead ("apple" become "apple-hay").
+  - Keep in mind the details about UTF-8 encoding!
+- Using a hash map and vector, create a text interface to allow a user to add employee names to a department in a company.
+  - For example, "Add Sally to Engineering" or "Add Amir to Sales".
+  - Then let the user retrieve a list of all people in a department or all people in the company by department, sorted alphabetically.
+
+The standard library API documentation describe method that vectors, strings, and hash map have that will be helpful for these exercises!
+
+We're getting into more complex programs in which operations can fail, so, it's a perfect time to discuss error handling.

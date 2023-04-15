@@ -1,5 +1,7 @@
 fn main() {
-    updating_a_value();
+    let mut x = vec![9, 8, 7, 6, 5, 4, 3, 2, 1];
+    let y = exercises1(&mut x);
+    println!("y: {y}");
 }
 
 #[allow(dead_code)]
@@ -153,3 +155,11 @@ fn updating_a_value() {
 
     println!("{:#?}", map);
 }
+
+#[allow(dead_code)]
+fn exercises1(list: &mut Vec<i32>) -> f32 {
+    list.sort();
+    list.iter().sum::<i32>() as f32 / list.len() as f32
+}
+
+#[allow(dead_code)]
