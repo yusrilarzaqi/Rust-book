@@ -854,4 +854,15 @@ The `or_insert` method returns a mutable reference (`&mut V`) to the value for t
 Here we store that mutable reference in the `count` variable, so in order to assign to that value, we must first dereference `count` using the asterisk (`*`).
 The mutable reference goes out of scope at the end of the `for` loop, so all of these changes are safe and allowed by the borrowing rules.
 
+## Hashing Function
+
+By default, `HashMap` uses a hashing function called _SipHash_ that can provide resistance to Denial of Service (DoS) attacks involving hash tables [¹](https://doc.rust-lang.org/book/ch08-03-hash-maps.html#siphash).
+This is not the fastest hashing algorithm available, but the trade-off for better security that comes with the drop in performance is worth it.
+If you profile your code and find that the default hash function is too slow for your purposes, you can switch to another function by specifying a different hasher.
+A _hasher_ is a type that implements the `BuildHasher` trait.
+We'll talk about traits and how to implement them in Chapter 10.
+You don't necessarily have to implement your own hasher from scratch; [crates.io](https://crates.io/) has libraries shared by other Rust users that provide hashers implementing many common hashing algorithms.
+
+¹ [https://en.wikipedia.org/wiki/SipHash](https://en.wikipedia.org/wiki/SipHash)
+
 ##
