@@ -1,5 +1,5 @@
 fn main() {
-    adding_a_key_and_value();
+    updating_a_value();
 }
 
 #[allow(dead_code)]
@@ -136,4 +136,20 @@ fn adding_a_key_and_value() {
     scores.entry(String::from("Blue")).or_insert(50);
 
     println!("{scores:#?}");
+}
+
+#[allow(dead_code)]
+fn updating_a_value() {
+    use std::collections::HashMap;
+
+    let text = "hello world wonderful world hello";
+
+    let mut map = HashMap::new();
+
+    for word in text.split_whitespace() {
+        let count = map.entry(word).or_insert(0);
+        *count += 1;
+    }
+
+    println!("{:#?}", map);
 }
