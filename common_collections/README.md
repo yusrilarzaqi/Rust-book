@@ -770,4 +770,19 @@ You could keep the old value and ignore the new value, only adding the new value
 Or you could combine the old value and the new value.
 Let's look at how to do each of these!
 
+## Overwriting a value
+
+If we insert a key and a value into a hash map and then insert that same key with a different value, the value associated with that key will be replaced.
+Even though the code in Listing 8-23 calls `insert` twice, the hash map will only contain one key/value pair because we're inserting the value for the Blue team's key both times.
+
+```rust
+    use std::collections::HashMap;
+
+    let mut scores = HashMap::new();
+
+    scores.insert("Blue".to_string(), 10);
+    scores.insert("Blue".to_string(), 25);
+```
+
+
 ##

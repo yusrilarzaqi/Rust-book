@@ -1,5 +1,5 @@
 fn main() {
-    hash_map_and_ownership();
+    overwriting_a_value();
 }
 
 #[allow(dead_code)]
@@ -100,6 +100,7 @@ fn accessing_values_in_a_hash_map() {
 
 }
 
+#[allow(dead_code)]
 fn hash_map_and_ownership() {
     use std::collections::HashMap;
 
@@ -110,5 +111,17 @@ fn hash_map_and_ownership() {
     map.insert(field_name, field_value);
     // field_name and field_value are invalid at this point, try using them and
     // see what compiler error you get
-    println!("{field_name}: {field_value}");
+    // println!("{field_name}: {field_value}");
+}
+
+#[allow(dead_code)]
+fn overwriting_a_value() {
+    use std::collections::HashMap;
+
+    let mut scores = HashMap::new();
+
+    scores.insert("Blue".to_string(), 10);
+    scores.insert("Blue".to_string(), 25);
+
+    println!("scores: {scores:#?}");
 }
