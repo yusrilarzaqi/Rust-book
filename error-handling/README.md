@@ -23,6 +23,8 @@ In both cases, we cause a panic in our program.
 By default, these panics will print a failure message, unwind, clean up the stack, and quit.
 Via an environment variable, you can also have Rust display the call stack when a panic occurs to make it easier to track down the source of the panic.
 
+---
+
 ### Unwinding the Stack or Aborting in Response to a Panic
 
 By default, when a panic occurs, the program starts _unwinding_, which means Rust walks back up the stack and cleans up the data from each function it encounters.
@@ -37,5 +39,34 @@ For example, if you want to abort on panic in release mode, add this
 [profile.release]
 panic = 'abort'
 ```
+
+---
+
+Let's try calling `panic!` in a simple program:
+
+```rust
+fn main() {
+    panic!("crash and burns");
+}
+```
+
+When you run the program, you'll see something like this:
+
+```
+$ cargo run
+   Compiling panic v0.1.0 (file:///projects/panic)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.25s
+     Running `target/debug/panic`
+thread 'main' panicked at 'crash and burn', src/main.rs:2:5
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+```
+
+The call to `panic!` causes the error message contained in the last two lines.
+The first line shows our panic message and the place in our source code where the panic occurred: _src/main.rs:2:5_ indicated that it's the second line, fifth character of our _src/main.rs_ file.
+
+In this case, the line indicated is part of our code, and if we go to that line, we see the `panic!` macro call.
+In other cases, the `panic!` call might be in code that our code calls, and the filename and line number reported by the error message will be someone else's code where the `panic!` macro is called, not the line of our code that eventually led to the `panic!` call.
+We can use the backtrace of the functions the `panicc!` call came from the figure out the part of our code that is causing the problem.
+We'll discuss backtrace in more detail next.
 
 ##
