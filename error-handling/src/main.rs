@@ -1,3 +1,5 @@
 fn main() {
-    panic!("crash and burns");
+    let v = vec![1, 2, 3];
+
+    v[99];
 }
