@@ -1,11 +1,9 @@
-use std::{io, fs};
+use std::{error::Error, fs::File};
 
-fn read_username_from_flle() -> Result<String, io::Error> {
-    fs::read_to_string("hello.txt")
-}
+fn main() -> Result<(), Box<dyn Error>> {
+    let greeting_file = File::open("hello.txt")?;
 
-fn main() {
-    let result = read_username_from_flle();
+    println!("{:#?}", greeting_file);
 
-    println!("{}", result.unwrap());
+    Ok(())
 }
