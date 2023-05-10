@@ -1,9 +1,9 @@
-use std::{error::Error, fs::File};
+use std::net::IpAddr;
 
-fn main() -> Result<(), Box<dyn Error>> {
-    let greeting_file = File::open("hello.txt")?;
+fn main() {
+    let home: IpAddr = "127.0.0.1"
+        .parse()
+        .expect("Hardcoded IP address should be valid");
 
-    println!("{:#?}", greeting_file);
-
-    Ok(())
+    println!("{:#?}", home);
 }
